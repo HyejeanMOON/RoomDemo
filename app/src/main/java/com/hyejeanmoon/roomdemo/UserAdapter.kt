@@ -20,7 +20,7 @@ class UserAdapter :
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         getItem(position)?.also {
-            holder.binding.txtBirthday.text = it.birthday
+            holder.binding.txtBirthday.text = it.birthday.toString()
             holder.binding.txtFirstName.text = it.firstName
             holder.binding.txtLastName.text = it.lastName
             holder.binding.txtNationality.text = it.nationality

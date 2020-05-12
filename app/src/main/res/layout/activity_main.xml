@@ -9,11 +9,11 @@
         tools:context=".MainActivity">
 
         <Button
-            android:id="@+id/btnInsert"
+            android:id="@+id/btnDeleteAndInsert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Insert Users"
-            app:layout_constraintBottom_toTopOf="@id/btnDeleteAndInsert"
+            android:text="Delete And Insert Users"
+            app:layout_constraintBottom_toTopOf="@id/btnDelete"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -23,20 +23,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delete All Users"
-            app:layout_constraintBottom_toTopOf="@id/btnDeleteAndInsert"
+            app:layout_constraintBottom_toTopOf="@id/btnUpdate"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnInsert" />
+            app:layout_constraintTop_toBottomOf="@id/btnDeleteAndInsert" />
 
         <Button
-            android:id="@+id/btnDeleteAndInsert"
+            android:id="@+id/btnUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete And Insert Users"
-            app:layout_constraintBottom_toTopOf="@id/btnShow"
+            android:text="Update All Users"
+            app:layout_constraintBottom_toTopOf="@id/btnInsert"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnDelete" />
+
+        <Button
+            android:id="@+id/btnInsert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Insert Users"
+            app:layout_constraintBottom_toTopOf="@id/btnShow"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnUpdate" />
 
         <Button
             android:id="@+id/btnShow"
@@ -46,7 +56,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnDeleteAndInsert" />
+            app:layout_constraintTop_toBottomOf="@id/btnInsert" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.hyejeanmoon.roomdemo
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity(tableName = "users_table")
 data class User(
@@ -17,7 +18,7 @@ data class User(
     val lastName: String,
 
     @ColumnInfo(name = "birthday")
-    val birthday: String,
+    val birthday: Date?,
 
     @ColumnInfo(name = "nationality")
     val nationality: String

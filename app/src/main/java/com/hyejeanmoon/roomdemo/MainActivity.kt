@@ -9,6 +9,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.coroutines.CoroutineContext
 
 class MainActivity : AppCompatActivity(), CoroutineScope {
@@ -23,15 +25,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        binding.btnInsert.setOnClickListener {
-            launch {
-                generateUser().forEach {
-                    AppDatabase.getInstance(context = applicationContext).getUserDao()
-                        .insertUser(it)
-                }
-            }
-        }
-
         binding.btnDeleteAndInsert.setOnClickListener {
             launch {
                 AppDatabase.getInstance(applicationContext).getUserDao()
@@ -39,10 +32,30 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
             }
         }
 
+        binding.btnInsert.setOnClickListener {
+            launch {
+                AppDatabase.getInstance(applicationContext).getUserDao().insertUser(generateUser())
+            }
+        }
+
         binding.btnDelete.setOnClickListener {
             launch {
                 val allUsers = AppDatabase.getInstance(applicationContext).getUserDao().getAll()
                 AppDatabase.getInstance(applicationContext).getUserDao().deleteUser(allUsers)
+            }
+        }
+
+        binding.btnUpdate.setOnClickListener {
+            launch {
+                AppDatabase.getInstance(applicationContext).getUserDao().updateUser(
+                    User(
+                        id = 0,
+                        firstName = "Hello",
+                        lastName = "World",
+                        birthday = Date(1589214300000),
+                        nationality = "!!!"
+                    )
+                )
             }
         }
 
@@ -58,20 +71,17 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
         val firstNamePrefix = "firstName "
         val lastNamePrefix = "lastName "
-        val birthDayPrefix = "birthDay "
         val nationalityPrefix = "nationality "
 
-        for (i in 0 until 1000) {
+        for (i in 0 until 50) {
             val user = User(
+                id = i,
                 firstName = "$firstNamePrefix$i",
                 lastName = "$lastNamePrefix$i",
-                birthday = "$birthDayPrefix$i",
+                birthday = Date(1589214300000),
                 nationality = "$nationalityPrefix$i"
             )
-            users.add(
-                user
-            )
-
+            users.add(user)
         }
         return users.toList()
     }

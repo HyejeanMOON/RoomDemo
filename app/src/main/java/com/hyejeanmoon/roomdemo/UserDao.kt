@@ -8,18 +8,18 @@ interface UserDao {
     @Query("SELECT * FROM users_table")
     suspend fun getAll(): List<User>
 
-    @Query("SELECT * FROM users_table ORDER BY id ASC")
-    fun getAllByLivePage(): List<User>
-
     @Insert
-    suspend fun insertUser(user: User)
+    suspend fun insertUser(users: List<User>)
 
     @Delete
     suspend fun deleteUser(users: List<User>)
 
+    @Update
+    suspend fun updateUser(vararg users: User)
+
     @Transaction
     suspend fun deleteAllAndInsertUser(users: List<User>) {
         deleteUser(getAll())
-        users.forEach { insertUser(it) }
+        insertUser(users)
     }
 }
